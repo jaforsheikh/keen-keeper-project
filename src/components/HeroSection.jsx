@@ -1,4 +1,9 @@
-export default function HeroSection({ totalFriends, onTrack, needAttention, interactionsThisMonth }) {
+export default function HeroSection({
+  totalFriends,
+  onTrack,
+  needAttention,
+  interactionsThisMonth,
+}) {
   return (
     <section className="px-4 py-14 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -36,6 +41,12 @@ export default function HeroSection({ totalFriends, onTrack, needAttention, inte
             </div>
           </div>
 
+
+
+
+
+
+
           <div className="card rounded-2xl bg-white shadow-sm">
             <div className="card-body items-center py-10 text-center">
               <h3 className="text-5xl font-bold text-emerald-900">
@@ -44,6 +55,11 @@ export default function HeroSection({ totalFriends, onTrack, needAttention, inte
               <p className="mt-3 text-xl text-slate-500">Need Attention</p>
             </div>
           </div>
+
+
+
+
+          
 
           <div className="card rounded-2xl bg-white shadow-sm">
             <div className="card-body items-center py-10 text-center">
