@@ -2,7 +2,6 @@
 
 import toast from "react-hot-toast";
 import { Phone, MessageSquareText, Video } from "lucide-react";
-
 export default function QuickCheckInActions({ friend }) {
   const addTimelineEntry = (type) => {
     const previousEntries = JSON.parse(
@@ -18,6 +17,7 @@ export default function QuickCheckInActions({ friend }) {
     };
     const updatedEntries = [newEntry, ...previousEntries];
     localStorage.setItem("timelineEntries", JSON.stringify(updatedEntries));
+    window.dispatchEvent(new Event("timeline-updated"));
     toast.success(`${type} logged for ${friend.name}`);
   };
   return (
