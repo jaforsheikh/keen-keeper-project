@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "../components/HeroSection";
+import Footer from "@/components/Footer";
 function getStatusClasses(status) {
   if (status === "on-track") {
     return "badge border-0 bg-emerald-900 text-white";
@@ -130,6 +131,7 @@ export default function HomePage() {
           )}
         </div>
       </section>
+      <Footer/>
     </main>
   );
 }
