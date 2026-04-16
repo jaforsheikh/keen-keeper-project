@@ -24,7 +24,6 @@ export default function Navbar() {
       icon: ChartNoAxesCombined,
     },
   ];
-
   return (
     <header className="w-full border-b border-slate-200 bg-white">
       <div className="flex w-full items-center justify-between px-6 py-5 md:px-10 lg:px-16">
@@ -34,12 +33,10 @@ export default function Navbar() {
         >
           Keen<span className="text-emerald-800">Keeper</span>
         </Link>
-
         <nav className="flex items-center gap-3 md:gap-4">
           {navLinks.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
-
             return (
               <Link
                 key={item.href}

@@ -1,5 +1,7 @@
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "KeenKeeper",
@@ -12,6 +14,8 @@ export default function RootLayout({ children }) {
       <body className="bg-slate-100 text-slate-900">
         <Navbar />
         {children}
+        <Footer />
+        <Toaster position="top-right" />
       </body>
     </html>
   );

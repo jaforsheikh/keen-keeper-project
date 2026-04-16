@@ -1,9 +1,10 @@
 "use client";
+
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import HeroSection from "../components/HeroSection";
-import Footer from "@/components/Footer";
+
 function getStatusClasses(status) {
   if (status === "on-track") {
     return "badge border-0 bg-emerald-900 text-white";
@@ -16,7 +17,6 @@ function getStatusClasses(status) {
 export default function HomePage() {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -37,19 +37,11 @@ export default function HomePage() {
     fetchFriends();
   }, []);
   const stats = useMemo(() => {
-    const totalFriends = friends.length;
-    const onTrack = friends.filter(
-      (friend) => friend.status === "on-track"
-    ).length;
-    const needAttention = friends.filter(
-      (friend) => friend.status !== "on-track"
-    ).length;
-    const interactionsThisMonth = 12;
     return {
-      totalFriends,
-      onTrack,
-      needAttention,
-      interactionsThisMonth,
+      totalFriends: friends.length,
+      onTrack: friends.filter((f) => f.status === "on-track").length,
+      needAttention: friends.filter((f) => f.status !== "on-track").length,
+      interactionsThisMonth: 12,
     };
   }, [friends]);
   return (
@@ -62,33 +54,16 @@ export default function HomePage() {
       />
       <section className="px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="mt-2">
-            <h2 className="text-2xl font-bold text-slate-900">Your Friends</h2>
-          </div>
+          <h2 className="text-2xl font-bold text-slate-900">Your Friends</h2>
           {loading ? (
-            <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, index) => (
-                <div key={index} className="card bg-white shadow-sm">
-                  <div className="card-body items-center">
-                    <div className="skeleton h-20 w-20 rounded-full" />
-                    <div className="mt-4 skeleton h-4 w-28" />
-                    <div className="skeleton h-3 w-16" />
-                    <div className="mt-4 flex gap-2">
-                      <div className="skeleton h-6 w-16 rounded-full" />
-                      <div className="skeleton h-6 w-16 rounded-full" />
-                    </div>
-                    <div className="mt-4 skeleton h-6 w-20 rounded-full" />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <p className="mt-6 text-slate-500">Loading...</p>
           ) : (
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {friends.map((friend) => (
                 <Link
                   key={friend.id}
                   href={`/details/${friend.id}`}
-                  className="card bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
+                  className="card bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                 >
                   <div className="card-body items-center text-center">
                     <Image
@@ -98,29 +73,24 @@ export default function HomePage() {
                       height={80}
                       className="h-20 w-20 rounded-full object-cover"
                     />
-                    <h3 className="card-title mt-2 text-lg text-slate-900">
+                    <h3 className="mt-2 text-lg font-semibold text-slate-900">
                       {friend.name}
                     </h3>
                     <p className="text-xs text-slate-400">
                       {friend.days_since_contact}d ago
                     </p>
-                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+                    <div className="mt-3 flex flex-wrap justify-center gap-2">
                       {friend.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="badge border-0 bg-emerald-100 px-3 py-3 text-[11px] font-medium capitalize text-emerald-700"
+                          className="badge border-0 bg-emerald-100 text-emerald-700"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-
-                    <div className="mt-4">
-                      <span
-                        className={`px-3 py-3 text-[11px] font-semibold capitalize ${getStatusClasses(
-                          friend.status
-                        )}`}
-                      >
+                    <div className="mt-3">
+                      <span className={getStatusClasses(friend.status)}>
                         {friend.status}
                       </span>
                     </div>
@@ -131,7 +101,6 @@ export default function HomePage() {
           )}
         </div>
       </section>
-      <Footer/>
     </main>
   );
 }
