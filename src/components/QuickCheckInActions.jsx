@@ -26,7 +26,7 @@ export default function QuickCheckInActions({ friend }) {
         <h2 className="text-lg font-semibold text-emerald-900">
           Quick Check-In
         </h2>
-        <div className="mt-2 grid gap-4 md:grid-cols-3">
+        <div className="mt-2 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           <button
             onClick={() => addTimelineEntry("Call")}
             className="btn h-24 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100"
@@ -47,7 +47,7 @@ export default function QuickCheckInActions({ friend }) {
           </button>
           <button
             onClick={() => addTimelineEntry("Video")}
-            className="btn h-24 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100"
+            className="btn h-24 rounded-xl border border-slate-200 bg-slate-50 text-slate-800 hover:bg-slate-100 sm:col-span-2 xl:col-span-1"
           >
             <div className="flex flex-col items-center gap-2">
               <Video size={24} />
